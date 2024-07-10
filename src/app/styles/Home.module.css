@@ -1,0 +1,183 @@
+/* app/styles/Home.module.css */
+.container {
+  padding: 0 2rem;
+  background-color: #fff; /* Белый фон */
+  color: #4a4a4a; /* Темно-серый текст для лучшей читаемости */
+}
+
+.main {
+  min-height: 100vh;
+  padding: 4rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f5ff; /* Очень светлый лавандовый фон */
+}
+
+.title {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 4rem;
+  text-align: center;
+  font-style: italic;
+  color: #8e44ad; /* Лавандовый цвет для заголовка */
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  margin-top: 3rem;
+}
+
+.card {
+  flex: 0 0 calc(25% - 2rem);
+  margin: 1rem;
+  padding: 1.5rem;
+  text-align: left;
+  color: #4a4a4a;
+  text-decoration: none;
+  border: 1px solid #e6e6fa; /* Светло-лавандовая граница */
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  background-color: #fff; /* Белый фон карточки */
+  box-shadow: 0 4px 6px rgba(142, 68, 173, 0.1); /* Мягкая тень с лавандовым оттенком */
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+  color: #8e44ad; /* Лавандовый цвет при наведении */
+  border-color: #8e44ad;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(142, 68, 173, 0.2);
+}
+
+.card h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  color: #8e44ad; /* Лавандовый цвет для заголовков карточек */
+}
+
+.card p {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.card .showtime-button {
+  display: inline-block;
+  margin: 0.25rem;
+  padding: 0.5rem 1rem;
+  background-color: #8e44ad; /* Лавандовый фон кнопки */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.card .showtime-button:hover {
+  background-color: #6c3483; /* Темно-лавандовый при наведении */
+}
+
+.footer {
+  width: 100%;
+  height: 100px;
+  border-top: 1px solid #e6e6fa; /* Светло-лавандовая граница */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff; /* Белый фон футера */
+}
+
+.logo {
+  margin-left: 0.5rem;
+}
+
+.card img {
+  transition: transform 0.3s ease;
+  border-radius: 10px; /* Скругленные углы для изображений */
+}
+
+.card:hover img {
+  transform: scale(1.05); /* Немного уменьшим увеличение при наведении */
+}
+
+/* Добавим стили для заголовка "Расписание сеансов" */
+.card h3 {
+  color: #8e44ad;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Стилизация контейнера для кнопок времени сеанса */
+.showtimes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Дополнительные стили для улучшения отзывчивости */
+@media (max-width: 1200px) {
+  .card {
+    flex: 0 0 calc(33.333% - 2rem);
+  }
+}
+
+@media (max-width: 900px) {
+  .card {
+    flex: 0 0 calc(50% - 2rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    flex: 0 0 100%;
+  }
+  
+  .title {
+    font-size: 3rem;
+  }
+}
+
+/* Добавим плавное появление элементов при загрузке страницы */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.main > * {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.card {
+  animation: fadeIn 0.5s ease-out forwards;
+  animation-delay: calc(0.1s * var(--animation-order, 0));
+}
+
+.topRightButtons {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-left: 10px;
+  background-color: #6c3483;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+

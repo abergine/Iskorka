@@ -1,0 +1,987 @@
+.container {
+  padding: 2rem;
+  background-color: #f8f5ff; /* Очень светлый лавандовый фон */
+  color: #4a4a4a; /* Темно-серый текст для лучшей читаемости */
+
+}
+
+
+.title {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 3rem;
+  text-align: center;
+  color: #8e44ad; /* Лавандовый цвет для заголовка */
+  margin-bottom: 2rem;
+}
+
+.text {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+
+}
+
+
+
+.seatMap {
+  margin-top: 2rem;
+
+}
+
+.screen {
+  background-color: #ccc;
+  padding: 10px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.seatsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  margin-bottom: 10px;
+}
+.seats {
+  display: grid;
+  grid-template-columns: repeat(10, 50px);
+  gap: 10px;
+  justify-content: center;
+}
+
+.seat {
+  width: 50px;
+  height: 50px;
+  border: none;
+  margin: 0 5px;
+  border: none;
+
+  cursor: pointer;
+
+}
+
+.available {
+  background-color: #4CAF50;
+}
+
+
+.booked {
+  background-color: #525252; /* Серый для забронированных мест */
+  cursor: not-allowed;
+}
+
+
+.selected {
+  background-color: #8e44ad; /* Лавандовый для выбранных мест */
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+
+/* Добавим стили для кнопок бронирования */
+.bookButton {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #8e44ad;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.bookButton:hover {
+  background-color: #6c3483;
+  transform: translateY(-2px);
+}
+
+.bookButton:disabled {
+  background-color: #d1c4e9;
+  cursor: not-allowed;
+}
+
+/* Стили для легенды */
+.legend {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  margin: 0 1rem;
+}
+
+.legendColor {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+}
+
+.legendText {
+  font-size: 0.9rem;
+  color: #4a4a4a;
+}
+
+/* Стили для информации о выбранных местах */
+.selectedInfo {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #6a1b9a;
+}
+
+/* Адаптивный дизайн */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .seats {
+    grid-template-columns: repeat(5, 50px);
+  }
+
+  .card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .seats {
+    grid-template-columns: repeat(4, 40px);
+    gap: 8px;
+  }
+
+  .seat {
+    width: 40px;
+    height: 40px;
+    font-size: 0.8rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .text {
+    font-size: 1rem;
+  }
+}
+
+/* Анимация для плавного появления элементов */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.seatMap, .card, .bookButton {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Стили для экрана */
+.screen {
+  width: 80%;
+  height: 10px;
+  background-color: #8e44ad;
+  margin: 0 auto 2rem;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(142, 68, 173, 0.5);
+  position: relative;
+}
+
+.screen::after {
+  content: 'Экран';
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9rem;
+  color: #6a1b9a;
+}
+
+/* Стили для номеров рядов */
+.rowNumber {
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8rem;
+  color: #6a1b9a;
+}
+
+/* Улучшенные стили для выбранных мест */
+.selectedSeats {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f3e5f5;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.selectedSeats h3 {
+  color: #6a1b9a;
+  margin-bottom: 0.5rem;
+}
+
+.selectedSeatsList {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.selectedSeatItem {
+  background-color: #8e44ad;
+  color: white;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+}
+
+/* Стили для итоговой суммы */
+.totalPrice {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #6a1b9a;
+  margin-top: 1rem;
+}
+
+/* Улучшенные стили для кнопки бронирования */
+.bookButton {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 2rem auto 0;
+  padding: 15px;
+  background-color: #8e44ad;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 6px rgba(142, 68, 173, 0.2);
+}
+
+.bookButton:hover {
+  background-color: #6c3483;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 8px rgba(142, 68, 173, 0.3);
+}
+
+.bookButton:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 4px rgba(142, 68, 173, 0.2);
+}
+
+/* Стили для модального окна подтверждения */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 15px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 20px rgba(142, 68, 173, 0.2);
+  text-align: center;
+}
+
+.modalTitle {
+  color: #6a1b9a;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.modalText {
+  color: #4a4a4a;
+  margin-bottom: 1.5rem;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.modalButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.confirmButton {
+  background-color: #8e44ad;
+  color: white;
+}
+
+.confirmButton:hover {
+  background-color: #6c3483;
+}
+
+.cancelButton {
+  background-color: #f3e5f5;
+  color: #6a1b9a;
+}
+
+.cancelButton:hover {
+  background-color: #e1bee7;
+}
+
+/* Стили для информации о фильме */
+.movieInfo {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 10px rgba(142, 68, 173, 0.1);
+}
+
+.movieTitle {
+  color: #6a1b9a;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.movieDetails {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.movieDetail {
+  flex-basis: 48%;
+  margin-bottom: 0.5rem;
+}
+
+.movieDetailLabel {
+  font-weight: bold;
+  color: #8e44ad;
+}
+
+/* Улучшенные стили для легенды */
+.legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(142, 68, 173, 0.1);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 1rem;
+}
+
+.legendColor {
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  margin-right: 0.5rem;
+}
+
+.legendText {
+  font-size: 0.9rem;
+  color: #4a4a4a;
+}
+
+/* Анимация для выбора места */
+@keyframes seatPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.seat.selected {
+  animation: seatPulse 0.5s ease-in-out;
+}
+
+/* Стили для сообщений об ошибках */
+.errorMessage {
+  color: #d32f2f;
+  background-color: #ffcdd2;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Дополнительные медиа-запросы для лучшей отзывчивости */
+@media (max-width: 400px) {
+  .seats {
+    grid-template-columns: repeat(3, 35px);
+    gap: 6px;
+  }
+
+  .seat {
+    width: 35px;
+    height: 35px;
+    font-size: 0.7rem;
+  }
+
+  .movieTitle {
+    font-size: 1.5rem;
+  }
+
+  .movieDetail {
+    flex-basis: 100%;
+  }
+}
+
+/* Стили для улучшения доступности */
+.seat:focus,
+.bookButton:focus,
+.modalButton:focus {
+  outline: 3px solid #ba68c8;
+  outline-offset: 2px;
+}
+
+/* Стили для загрузки */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.loadingSpinner {
+  border: 4px solid #f3e5f5;
+  border-top: 4px solid #8e44ad;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Стили для подсказок */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltipText {
+  visibility: hidden;
+  width: 120px;
+  background-color: #6a1b9a;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltipText {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Стили для предупреждений */
+.warning {
+  background-color: #fff3e0;
+  border-left: 4px solid #ff9800;
+  padding: 10px;
+  margin-top: 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #e65100;
+}
+
+/* Улучшенные стили для кнопок времени сеанса */
+.timeButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.timeButton {
+  padding: 8px 16px;
+  background-color: #f3e5f5;
+  border: 1px solid #8e44ad;
+  border-radius: 20px;
+  color: #6a1b9a;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.timeButton:hover,
+.timeButton.active {
+  background-color: #8e44ad;
+  color: white;
+}
+
+/* Стили для информации о бронировании */
+.bookingSummary {
+  background-color: #f3e5f5;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.bookingSummaryTitle {
+  color: #6a1b9a;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.bookingSummaryItem {
+  margin-bottom: 0.5rem;
+}
+
+.bookingSummaryLabel {
+  font-weight: bold;
+  color: #8e44ad;
+}
+
+.bookingSummaryValue {
+  color: #4a4a4a;
+}
+
+/* Стили для пошагового процесса бронирования */
+.bookingSteps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.bookingStep {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+
+.bookingStep::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -50%;
+  width: 100%;
+  height: 2px;
+  background-color: #e1bee7;
+  z-index: -1;
+}
+
+.bookingStep:last-child::after {
+  display: none;
+}
+
+.bookingStepNumber {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #e1bee7;
+  color: #6a1b9a;
+  line-height: 30px;
+  margin-bottom: 0.5rem;
+}
+
+.bookingStep.active .bookingStepNumber {
+  background-color: #8e44ad;
+  color: white;
+}
+
+.bookingStepText {
+  font-size: 0.9rem;
+  color: #6a1b9a;
+}
+
+/* Стили для формы ввода данных пользователя */
+.userForm {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #6a1b9a;
+}
+
+.formInput {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e1bee7;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: #8e44ad;
+  box-shadow: 0 0 0 2px rgba(142, 68, 173, 0.2);
+}
+
+/* Стили для уведомлений */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  border-radius: 4px;
+  color: white;
+  font-size: 1rem;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.notificationSuccess {
+  background-color: #4caf50;
+}
+
+.notificationError {
+  background-color: #f44336;
+}
+
+.notificationShow {
+  opacity: 1;
+}
+
+/* Стили для кнопки возврата */
+.backButton {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f3e5f5;
+  color: #6a1b9a;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.backButton:hover {
+  background-color: #e1bee7;
+}
+
+/* Стили для секции FAQ */
+.faqSection {
+  margin-top: 3rem;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(142, 68, 173, 0.1);
+}
+
+.faqTitle {
+  color: #6a1b9a;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.faqItem {
+  margin-bottom: 1.5rem;
+}
+
+.faqQuestion {
+  font-weight: bold;
+  color: #8e44ad;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faqQuestion::after {
+  content: '+';
+  font-size: 1.2rem;
+}
+
+.faqQuestion.active::after {
+  content: '-';
+}
+
+.faqAnswer {
+  color: #4a4a4a;
+  padding-left: 1rem;
+  border-left: 2px solid #e1bee7;
+  margin-top: 0.5rem;
+  display: none;
+}
+
+.faqAnswer.show {
+  display: block;
+}
+
+/* Стили для секции отзывов */
+.reviewsSection {
+  margin-top: 3rem;
+}
+
+.reviewsTitle {
+  color: #6a1b9a;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.reviewItem {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 5px rgba(142, 68, 173, 0.1);
+}
+
+.reviewAuthor {
+  font-weight: bold;
+  color: #8e44ad;
+  margin-bottom: 0.5rem;
+}
+
+.reviewRating {
+  color: #ffa000;
+  margin-bottom: 0.5rem;
+}
+
+.reviewText {
+  color: #4a4a4a;
+}
+
+/* Стили для формы добавления отзыва */
+.reviewForm {
+  margin-top: 2rem;
+  background-color: #f3e5f5;
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.reviewFormTitle {
+  color: #6a1b9a;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.reviewFormInput,
+.reviewFormTextarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid #e1bee7;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.reviewFormTextarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.reviewFormSubmit {
+  background-color: #8e44ad;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reviewFormSubmit:hover {
+  background-color: #6c3483;
+}
+
+/* Стили для пагинации */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.paginationButton {
+  background-color: #f3e5f5;
+  border: none;
+  color: #6a1b9a;
+  padding: 8px 16px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.paginationButton:hover,
+.paginationButton.active {
+  background-color: #8e44ad;
+  color: white;
+}
+
+/* Стили для всплывающих подсказок */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltipText {
+  visibility: hidden;
+  width: 120px;
+  background-color: #6a1b9a;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltipText {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Стили для карусели фильмов */
+.movieCarousel {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.movieCarouselInner {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.movieCarouselItem {
+  flex: 0 0 100%;
+  padding: 0 15px;
+}
+
+.movieCarouselImage {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.movieCarouselButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(142, 68, 173, 0.7);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.movieCarouselButton:hover {
+  background-color: rgba(142, 68, 173, 1);
+}
+
+.movieCarouselButtonPrev {
+  left: 10px;
+}
+
+.movieCarouselButtonNext {
+  right: 10px;
+}
+
+/* Стили для секции акций и специальных предложений */
+.promotionsSection {
+  background-color: #f3e5f5;
+  padding: 2rem;
+  border-radius: 10px;
+  margin-top: 3rem;
+}
+
+.promotionsTitle {
+  color: #6a1b9a;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.promotionItem {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 5px rgba(142, 68, 173, 0.1);
+}
+
+.promotionTitle {
+  color: #8e44ad;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.promotionDescription {
+  color: #4a4a4a;
+  margin-bottom: 1rem;
+}
+
+.promotionCode {
+  background-color: #e1bee7;
+  color: #6a1b9a;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+}

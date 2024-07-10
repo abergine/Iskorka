@@ -1,0 +1,32 @@
+/* styles/UserProfile.module.css */
+.profileContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .bookingItem {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+  }
+  
+  .bookingItem button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .bookingItem select {
+    padding: 5px;
+  }
+  /* styles/globals.css или аналогичный файл с глобальными стилями */
+main {
+  padding-top: 60px; /* Примерная высота хедера */
+}
+  

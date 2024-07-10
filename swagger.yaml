@@ -1,0 +1,261 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: API Кинотеатр "Искорка"
+  description: API Кинотеатр "Искорка"
+paths:
+  /freeSpace:
+    get:
+      tags:
+        - Cinema
+      summary: Получить сведения о наличии свободных мест
+      description: Получить сведения о наличии свободных мест на сеанс
+      parameters:
+        - name: idFilm
+          in: query
+          description: Идентификатор фильма
+          required: true
+          schema:
+            type: integer
+        - name: data
+          in: query
+          description: Дата сеанса
+          required: true
+          schema:
+            type: string
+            format: data
+        - name: limit
+          in: query
+          description: Лимит вывода записей
+          required: false
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          description: Сдвиг курсора
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/freeSpaceResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/freeSpaceResponse'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+  /cancelReservation:
+    delete:
+      tags:
+        - Cinema
+      summary: Отменить бронирование
+      description: Отменить бронирование места
+      parameters:
+        - name: idDeal
+          in: query
+          description: Идентификатор бронирования места
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cancelReservationResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/cancelReservationResponse'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+  /changeSessionTime:
+    put:
+      tags:
+        - Cinema
+      summary: Изменить время сеанса
+      description: Перенести сеанс на другое время
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                idFilm:
+                  description: Идентификатор фильма
+                  type: integer
+                  example: 123
+                data:
+                  description: Дата сеанса
+                  type: string
+                  format: data
+                  example: 01.01.2001
+                idSession:
+                  description: Идентификатор сеанса
+                  type: integer
+                  example: 456
+                idAuditorium:
+                  description: Идентификатор зрительного зала
+                  type: integer
+                  example: 32
+                placeNumber:
+                  description: Номер места
+                  type: integer
+                  example: 5
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bookingPlaceResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/bookingPlaceResponse'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+  /bookingPlace:
+    post:
+      tags:
+        - Cinema
+      summary: Забронировать место
+      description: Забронировать место на сеанс
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                idFilm:
+                  description: Идентификатор фильма
+                  type: integer
+                  example: 123
+                data:
+                  description: Дата сеанса
+                  type: string
+                  example: 01.01.2001
+                  format: data
+                idSession:
+                  description: Идентификатор сеанса
+                  type: integer
+                  example: 15
+                idAuditorium:
+                  description: Идентификатор зрительного зала
+                  type: integer
+                  example: 51
+                placeNumber:
+                  description: Номер места
+                  type: integer
+                  example: 31
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bookingPlaceResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/bookingPlaceResponse'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+components:
+  schemas:
+    pagination:
+      type: object
+      required:
+        - limit
+        - offset
+        - totalCount
+      properties:
+        limit:
+          type: integer
+          description: Количество элементов, которые вернулись
+        offset:
+          type: integer
+          description: Элемент, с которого началась выборка данных
+        totalCount:
+          type: integer
+          description: Cколько всего элементов есть на сервере
+    seat:
+      type: object
+      required:
+        - id
+        - seat
+        - row
+      properties:
+        id:
+          type: integer
+        seat:
+          type: integer
+        row:
+          type: integer
+    seats:
+      type: array
+      items:
+        $ref: '#/components/schemas/seat'
+    seatsInfo:
+      type: object
+      required:
+        - seats
+      properties:
+        pagination:
+          $ref: '#/components/schemas/pagination'
+        seats:
+          $ref: '#/components/schemas/seats'
+    freeSpaceResponse:
+      type: array
+      items:
+        properties:
+          idSession:
+            type: integer
+            example: 456
+          idAuditorium:
+            type: integer
+            example: 7
+          placeNumber:
+            type: integer
+            example: 58
+          placeStatus:
+            type: string
+          seatsInfo:
+            $ref: '#/components/schemas/seats'
+    cancelReservationResponse:
+      type: array
+      items:
+        properties:
+          cancelReservationStatus:
+            type: integer
+            example: ОК
+    bookingPlaceResponse:
+      type: array
+      items:
+        properties:
+          idDeal:
+            type: integer
+            example: 789
+          bookingStatus:
+            type: string
+            example: забукировано
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/9045238735A/Iscorka/1.0.0

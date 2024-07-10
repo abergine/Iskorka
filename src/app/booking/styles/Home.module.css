@@ -1,0 +1,562 @@
+.container {
+  padding: 2rem;
+  background-color: #f8f5ff; /* Очень светлый лавандовый фон */
+  color: #4a4a4a; /* Темно-серый текст для лучшей читаемости */
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #8e44ad; /* Лавандовый цвет для заголовка */
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.text {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.seatMap {
+  margin-top: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(142, 68, 173, 0.1);
+}
+
+.bookingContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(142, 68, 173, 0.15);
+}
+
+.timesContainer {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.timeButton {
+  margin: 5px;
+  padding: 8px 16px;
+  background-color: #f0e6ff; /* Очень светлый лавандовый */
+  border: 1px solid #8e44ad;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.timeButton:hover {
+  background-color: #d8c1ff;
+}
+
+.activeTime {
+  background-color: #8e44ad;
+  color: white;
+}
+
+.screenContainer {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.screen {
+  background-color: #e6d8ff; /* Светло-лавандовый */
+  padding: 15px;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 4px 6px rgba(142, 68, 173, 0.1);
+}
+
+.seatsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.seat {
+  width: 30px;
+  height: 30px;
+  margin: 0 5px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.available {
+  background-color: #b39ddb; /* Светло-лавандовый */
+}
+
+.selected {
+  background-color: #8e44ad; /* Лавандовый */
+}
+
+.booked {
+  background-color: #e0e0e0; /* Светло-серый */
+  cursor: not-allowed;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  margin: 0 15px;
+}
+
+.legendItem .seat {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.info {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 1.1rem;
+  color: #6a1b9a; /* Темно-лавандовый для важной информации */
+}
+
+.bookButton {
+  display: block;
+  margin: 30px auto;
+  padding: 12px 24px;
+  background-color: #8e44ad;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(142, 68, 173, 0.2);
+}
+
+.bookButton:hover {
+  background-color: #6c3483;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(142, 68, 173, 0.3);
+}
+
+.bookButton:disabled {
+  background-color: #d1c4e9; /* Очень светлый лавандовый */
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.profileButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #9c27b0; /* Более насыщенный лавандовый */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.profileButton:hover {
+  background-color: #7b1fa2;
+  transform: translateY(-2px);
+}
+
+.cancelChangeButton {
+  background-color: #ff80ab; /* Светло-розовый */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-left: 10px;
+  transition: all 0.3s ease;
+}
+
+.cancelChangeButton:hover {
+  background-color: #f50057;
+  transform: translateY(-2px);
+}
+
+.bookingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 15px; /* Добавляем отступ между кнопками */
+}
+
+/* Добавим анимацию для плавного появления элементов */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.bookingContainer > * {
+  animation: fadeIn 0.5s ease-out forwards;
+  animation-delay: calc(0.1s * var(--animation-order, 0));
+}
+
+/* Стилизация для улучшения читаемости и внешнего вида */
+.movieInfo {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #f3e5f5; /* Очень светлый лавандовый */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(142, 68, 173, 0.1);
+}
+
+.movieInfo h2 {
+  color: #8e44ad;
+  margin-bottom: 10px;
+}
+
+.movieInfo p {
+  color: #4a4a4a;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .text {
+    font-size: 1rem;
+  }
+
+  .bookingContainer {
+    padding: 15px;
+  }
+
+  .timeButton {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+
+  .seat {
+    width: 25px;
+    height: 25px;
+    margin: 0 3px;
+  }
+
+  .legendItem {
+    font-size: 0.9rem;
+  }
+
+  .bookButton {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+}
+
+/* Добавим стили для улучшения доступности */
+.seat:focus,
+.timeButton:focus,
+.bookButton:focus,
+.profileButton:focus,
+.cancelChangeButton:focus {
+  outline: 2px solid #8e44ad;
+  outline-offset: 2px;
+}
+
+/* Улучшим стиль для выбранных мест */
+.seat.selected {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(142, 68, 173, 0.5);
+}
+
+/* Добавим эффект наведения для доступных мест */
+.seat.available:hover {
+  background-color: #9575cd;
+}
+
+/* Стилизация для сообщений об ошибках или уведомлений */
+.notification {
+  background-color: #fff3e0;
+  border-left: 4px solid #ff9800;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  border-radius: 0 4px 4px 0;
+  color: #e65100;
+  font-size: 0.9rem;
+}
+
+/* Улучшение стиля для экрана */
+.screen {
+  position: relative;
+  overflow: hidden;
+}
+
+.screen::after {
+  content: 'Экран';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #6a1b9a;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Добавим анимацию для кнопок при нажатии */
+.timeButton:active,
+.bookButton:active,
+.profileButton:active,
+.cancelChangeButton:active {
+  transform: scale(0.95);
+}
+
+/* Стилизация для информации о выбранных местах */
+.selectedSeatsInfo {
+  background-color: #e1bee7;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1rem;
+  color: #4a148c;
+}
+
+/* Улучшение стиля для рядов мест */
+.row {
+  position: relative;
+}
+
+.row::before {
+  content: attr(data-row);
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  color: #8e44ad;
+}
+
+/* Добавим плавный переход для всех элементов */
+* {
+  transition: all 0.3s ease;
+}
+
+/* Стилизация для тултипов (если они используются) */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #8e44ad;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Улучшение доступности для пользователей с клавиатурой */
+.seat:focus-visible,
+.timeButton:focus-visible,
+.bookButton:focus-visible,
+.profileButton:focus-visible,
+.cancelChangeButton:focus-visible {
+  outline: 3px solid #ff4081;
+  outline-offset: 2px;
+}
+
+/* Стилизация для загрузки (если используется) */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.loading::after {
+  content: "";
+  width: 40px;
+  height: 40px;
+  border: 5px solid #e1bee7;
+  border-top: 5px solid #8e44ad;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Улучшение стиля для группировки мест (если используется) */
+.seatGroup {
+  border: 1px dashed #9c27b0;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.seatGroup .groupTitle {
+  font-size: 0.9rem;
+  color: #6a1b9a;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Стилизация для модальных окон (если используются) */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.closeModal {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #8e44ad;
+}
+
+/* Улучшение стиля для информации о фильме */
+.movieDetails {
+  background-color: #f3e5f5;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.movieDetails h3 {
+  color: #6a1b9a;
+  margin-bottom: 10px;
+}
+
+.movieDetails p {
+  color: #4a4a4a;
+  line-height: 1.6;
+}
+
+/* Стилизация для предупреждений */
+.warning {
+  background-color: #fff3e0;
+  border-left: 4px solid #ff9800;
+  padding: 10px15px;
+  margin-bottom: 15px;
+  border-radius: 0 4px 4px 0;
+  color: #e65100;
+  font-size: 0.9rem;
+}
+
+/* Стилизация для успешных сообщений */
+.success {
+  background-color: #e8f5e9;
+  border-left: 4px solid #4caf50;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  border-radius: 0 4px 4px 0;
+  color: #1b5e20;
+  font-size: 0.9rem;
+}
+
+/* Улучшение стиля для выпадающих списков (если используются) */
+select {
+  appearance: none;
+  background-color: #f3e5f5;
+  border: 1px solid #8e44ad;
+  border-radius: 4px;
+  padding: 8px 30px 8px 10px;
+  font-size: 1rem;
+  color: #4a4a4a;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238e44ad' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(142, 68, 173, 0.2);
+}
+
+/* Стилизация для чекбоксов (если используются) */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.checkbox-container input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #8e44ad;
+  border-radius: 4px;
+  margin-right: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox-container input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #8e44ad;
+  font-size: 14px;
+}
+
+.checkbox-container label {
+  cursor: pointer;
+  color: #4a4a4a;
+}
